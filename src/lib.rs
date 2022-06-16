@@ -14,9 +14,9 @@ fn transpose(matrix: &Matrix) -> Matrix {
             (0..matrix.len())
                 .into_iter()
                 .map(|y| matrix[y][x])
-                .collect_vec()
+                .collect()
         })
-        .collect_vec()
+        .collect()
 }
 
 #[derive(clap::ArgEnum, Debug, Copy, Clone)]
@@ -170,7 +170,7 @@ fn calculate_energy(image: &RgbImage) -> Matrix {
         })
         .chunks(image.width() as usize)
         .into_iter()
-        .map(|chunk| chunk.collect_vec())
+        .map(|chunk| chunk.collect())
         .collect_vec()
 }
 
@@ -194,7 +194,7 @@ fn write_energy_with_seam(matrix: &Matrix, seam: &[u32], mode: CarverMode, path:
         .iter()
         .flatten()
         .map(|energy| (255f64 * (energy / max_energy)) as u8)
-        .collect_vec();
+        .collect();
 
     let mut image = DynamicImage::ImageLuma8(
         GrayImage::from_vec(
